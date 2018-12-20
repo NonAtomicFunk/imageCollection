@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PicturesLisVC.swift
 //  imageCollection
 //
 //  Created by admin2 on 12/20/18.
@@ -8,13 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PicturesLisVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
     }
-
-
 }
-
