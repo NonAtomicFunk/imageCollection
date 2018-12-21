@@ -26,6 +26,8 @@ class LoginlVC: UIViewController {
     
     @IBOutlet weak var loginOptionsSwitcher: UISegmentedControl!
     
+    @IBOutlet weak var okBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = LoginlVM()
@@ -40,6 +42,9 @@ class LoginlVC: UIViewController {
         self.matchWarningLbl.isHidden = true
         self.loginOptionsSwitcher.setTitle("Register", forSegmentAt: 0)
         self.loginOptionsSwitcher.setTitle("Login", forSegmentAt: 1)
+        
+        self.okBtn.layer.cornerRadius = 12
+        self.okBtn.backgroundColor = .lightGray
         
         self.emailTxtFld.isHidden = false
         self.emailTxtFld.isUserInteractionEnabled = true
@@ -76,6 +81,14 @@ class LoginlVC: UIViewController {
             self.avatarBtn.isHidden = !self.avatarBtn.isHidden
             self.avatarBtn.isUserInteractionEnabled = !self.avatarBtn.isUserInteractionEnabled
             
+            if self.loginOptionsSwitcher.selectedSegmentIndex == 1 {
+                self.dropAvatarBtn.isHidden = true
+                self.dropAvatarBtn.isUserInteractionEnabled = false
+            } else if self.loginOptionsSwitcher.selectedSegmentIndex == 0 && self.avatarBtn.imageView!.image != UIImage(named: "take-a-photo")! {
+                self.dropAvatarBtn.isHidden = false
+                self.dropAvatarBtn.isUserInteractionEnabled = true
+            }
+            
         }.disposed(by: self.viewModel.bag)
         
         self.viewModel.storedImage.asObservable().subscribe{ imageChange in
@@ -107,8 +120,8 @@ class LoginlVC: UIViewController {
         self.confirmPassWordTxtLfld.rx.controlEvent(UIControlEvents.editingDidEnd).subscribe { _ in
             if self.confirmPassWordTxtLfld.text! != self.passWordTxtFld.text! {
                 self.matchWarningLbl.isHidden = false
-            }
-        }
+                }
+        }.disposed(by: self.viewModel.bag)
         
         //scroll up TODO
 //        self.passWordTxtFld.rx.didBeginEditing.subscribe({ n in
@@ -117,6 +130,10 @@ class LoginlVC: UIViewController {
 //        self.passWordTxtFld.rx.didEndEditing.subscribe { _ in
 //
 //        }.disposed(by: self.vm.bag)
+    }
+    
+    @IBAction func okBtnTapped(_ sender: Any) {
+        self.viewModel.login()
     }
 }
 

@@ -85,6 +85,13 @@
                                     <constraint firstAttribute="width" constant="24" id="FlE-xb-4Pw"/>
                                 </constraints>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRs-Mw-diu">
+                                <rect key="frame" x="75" y="564" width="225" height="30"/>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <action selector="okBtnTapped:" destination="EXd-QT-sGQ" eventType="touchUpInside" id="r11-k8-18N"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -92,6 +99,7 @@
                             <constraint firstItem="iyf-J7-n9Y" firstAttribute="centerX" secondItem="KcW-H9-NEx" secondAttribute="centerX" id="1gx-61-304"/>
                             <constraint firstItem="6Is-Ka-I3x" firstAttribute="centerX" secondItem="KcW-H9-NEx" secondAttribute="centerX" id="2cn-Oz-Y3q"/>
                             <constraint firstItem="KIB-ZZ-j2u" firstAttribute="centerX" secondItem="KcW-H9-NEx" secondAttribute="centerX" id="5C0-rN-HXX"/>
+                            <constraint firstItem="b4F-jg-Ik3" firstAttribute="top" secondItem="aRs-Mw-diu" secondAttribute="bottom" constant="24" id="5a6-Tv-BuQ"/>
                             <constraint firstItem="EBw-Eh-P3P" firstAttribute="top" secondItem="iyf-J7-n9Y" secondAttribute="top" id="Ake-xP-aea"/>
                             <constraint firstItem="ZdU-up-6Tl" firstAttribute="centerX" secondItem="KcW-H9-NEx" secondAttribute="centerX" id="BBF-8n-5e2"/>
                             <constraint firstItem="TZe-Tu-2Lh" firstAttribute="top" secondItem="ip8-DD-8TS" secondAttribute="top" constant="56" id="BNN-q7-b8M"/>
@@ -106,6 +114,8 @@
                             <constraint firstItem="ip8-DD-8TS" firstAttribute="bottom" secondItem="b4F-jg-Ik3" secondAttribute="bottom" constant="21" id="hTF-Jd-p49"/>
                             <constraint firstItem="ZdU-up-6Tl" firstAttribute="top" secondItem="KIB-ZZ-j2u" secondAttribute="bottom" constant="24" id="hX9-hI-cxK"/>
                             <constraint firstItem="iyf-J7-n9Y" firstAttribute="top" secondItem="6Is-Ka-I3x" secondAttribute="bottom" constant="36" id="ikL-Hk-01k"/>
+                            <constraint firstItem="aRs-Mw-diu" firstAttribute="width" secondItem="b4F-jg-Ik3" secondAttribute="width" id="kEu-WN-JTV"/>
+                            <constraint firstItem="aRs-Mw-diu" firstAttribute="centerX" secondItem="KcW-H9-NEx" secondAttribute="centerX" id="mW9-i3-0LF"/>
                             <constraint firstItem="KIB-ZZ-j2u" firstAttribute="top" secondItem="TZe-Tu-2Lh" secondAttribute="bottom" constant="24" id="mhI-rP-73E"/>
                             <constraint firstItem="TZe-Tu-2Lh" firstAttribute="centerX" secondItem="KcW-H9-NEx" secondAttribute="centerX" id="rtB-Sd-lhq"/>
                             <constraint firstItem="Zf7-X3-RSG" firstAttribute="width" secondItem="6Is-Ka-I3x" secondAttribute="width" id="tmm-Fz-r8S"/>
@@ -121,6 +131,7 @@
                         <outlet property="emailTxtFld" destination="KIB-ZZ-j2u" id="vK4-ce-a9E"/>
                         <outlet property="loginOptionsSwitcher" destination="b4F-jg-Ik3" id="q2X-2I-Fh3"/>
                         <outlet property="matchWarningLbl" destination="Zf7-X3-RSG" id="DGI-xE-Ihf"/>
+                        <outlet property="okBtn" destination="aRs-Mw-diu" id="rRE-ec-Hv5"/>
                         <outlet property="passWordTxtFld" destination="ZdU-up-6Tl" id="BOd-wS-uRw"/>
                         <outlet property="userNameTxtFld" destination="TZe-Tu-2Lh" id="O0s-dy-xzQ"/>
                     </connections>

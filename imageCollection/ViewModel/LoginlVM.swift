@@ -21,10 +21,10 @@ final class LoginlVM {
     let loginOptionChosen = Variable<LoginOptions>(.auth)
     
     func login() {
-        
+        print(#function)
         let data = self.storedImage.value.pngData()
         
-        Rest.shared.getAll(loginOptionChosen: self.loginOptionChosen.value,
+        Rest.shared.authorisation(loginOption: self.loginOptionChosen.value,
                            userName: self.userName.value,
                            email: self.email.value,
                            password: self.password.value,

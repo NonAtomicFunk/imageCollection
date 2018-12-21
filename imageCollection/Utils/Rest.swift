@@ -15,16 +15,20 @@ import RxCocoa
 class Rest {
     static let shared = Rest()
 
-    public func getAll(loginOptionChosen: LoginOptions,
+    public func getAll(/*loginOptionChosen: LoginOptions,
+                       userName: String,
+                       email: String?,
+                       password: String,
+                       imageData: Data?*/) {
+    }
+    
+    
+    func authorisation(loginOption: LoginOptions,
                        userName: String,
                        email: String?,
                        password: String,
                        imageData: Data?) {
         
-    }
-    
-    
-    func authorisation(_ loginOption: LoginOptions) {
         var params: [String: Any] = [:]
         
         let urlComponent = loginOption.rawValue
@@ -33,18 +37,25 @@ class Rest {
         
         switch loginOption {
         case .auth:
-            params = ["username": "?",
-                      "email": "!",
-                      "password": "!",
-                      "avatar": "imageData!"]
+            params = ["username": userName,
+                      "email": email!,
+                      "password": password,
+                      "avatar": imageData!]
             
         case .login:
-            params = ["email": "!",
-                      "password": "!"]
+            params = ["email": email,
+                      "password": password]
         }
         
-        Alamofire.request(url).responseJSON { response in
-            print(response)
+        
+//        Alamofire.request(url).responseJSON { response in
+        
+        Alamofire.request(url,
+                          method: HTTPMethod.post,
+                          parameters: params!,
+                          encoding: .jsonEncoding,
+                          headers: nil).responseJSON { response in
+            print("RESPONSE: ", response, "@ends Response. \n resose result value", response.result.value)
         }
     }
 }
