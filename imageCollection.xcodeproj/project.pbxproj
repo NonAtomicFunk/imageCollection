@@ -19,6 +19,8 @@
 		BC671AC121CBE6F300E9A8B3 /* PicturesLisVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC671AC021CBE6F300E9A8B3 /* PicturesLisVC.swift */; };
 		BC671AC321CBE70D00E9A8B3 /* UploadNewPicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC671AC221CBE70D00E9A8B3 /* UploadNewPicVC.swift */; };
 		BC671AC621CBE82800E9A8B3 /* GifGeneratorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC671AC521CBE82800E9A8B3 /* GifGeneratorVC.swift */; };
+		BC671AC821CD51CF00E9A8B3 /* Rest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC671AC721CD51CF00E9A8B3 /* Rest.swift */; };
+		BC671ACA21CD557C00E9A8B3 /* LoginlVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC671AC921CD557C00E9A8B3 /* LoginlVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		BC671AC021CBE6F300E9A8B3 /* PicturesLisVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesLisVC.swift; sourceTree = "<group>"; };
 		BC671AC221CBE70D00E9A8B3 /* UploadNewPicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadNewPicVC.swift; sourceTree = "<group>"; };
 		BC671AC521CBE82800E9A8B3 /* GifGeneratorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifGeneratorVC.swift; sourceTree = "<group>"; };
+		BC671AC721CD51CF00E9A8B3 /* Rest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rest.swift; sourceTree = "<group>"; };
+		BC671AC921CD557C00E9A8B3 /* LoginlVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginlVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,7 @@
 		BC671AB721CBDFAE00E9A8B3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BC671AC921CD557C00E9A8B3 /* LoginlVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 			children = (
 				BC671ABA21CBE00400E9A8B3 /* Constants.swift */,
 				BC671ABE21CBE1E600E9A8B3 /* VCRouter.swift */,
+				BC671AC721CD51CF00E9A8B3 /* Rest.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -279,7 +285,9 @@
 				BC671ABF21CBE1E600E9A8B3 /* VCRouter.swift in Sources */,
 				BC671AA221CBB47E00E9A8B3 /* AppDelegate.swift in Sources */,
 				BC671ABD21CBE16300E9A8B3 /* OriginalVC.swift in Sources */,
+				BC671AC821CD51CF00E9A8B3 /* Rest.swift in Sources */,
 				BC671AAA21CBB47E00E9A8B3 /* imageCollection.xcdatamodeld in Sources */,
+				BC671ACA21CD557C00E9A8B3 /* LoginlVM.swift in Sources */,
 				BC671AC121CBE6F300E9A8B3 /* PicturesLisVC.swift in Sources */,
 				BC671AC621CBE82800E9A8B3 /* GifGeneratorVC.swift in Sources */,
 				BC671ABB21CBE00400E9A8B3 /* Constants.swift in Sources */,

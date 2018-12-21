@@ -8,6 +8,13 @@
 
 import Foundation
 
+enum LoginOptions: String {
+    case auth = "/create"
+    case login = "/login"
+}
+
 class Constants {
     let baseURL = "http://api.doitserver.in.ua"
+    
+    
 }
