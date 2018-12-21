@@ -29,16 +29,29 @@ class LoginlVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = LoginlVM()
-        self.uiSetup()
         self.bindAll()
+        self.uiSetup()
     }
     
     func uiSetup() {
         self.dropAvatarBtn.setImage(UIImage(named: "closeIcon"), for: .normal)
         
-        self.matchWarningLbl.isHidden = false
-        self.loginOptionsSwitcher.setTitle("Login", forSegmentAt: 0)
-        self.loginOptionsSwitcher.setTitle("Register", forSegmentAt: 1)
+        self.loginOptionsSwitcher.selectedSegmentIndex = 0
+        self.matchWarningLbl.isHidden = true
+        self.loginOptionsSwitcher.setTitle("Register", forSegmentAt: 0)
+        self.loginOptionsSwitcher.setTitle("Login", forSegmentAt: 1)
+        
+        self.emailTxtFld.isHidden = false
+        self.emailTxtFld.isUserInteractionEnabled = true
+        self.confirmPassWordTxtLfld.isHidden = false
+        self.confirmPassWordTxtLfld.isUserInteractionEnabled = true
+        
+        avatarBtn.tintColor = .black
+        dropAvatarBtn.tintColor = .black
+        loginOptionsSwitcher.tintColor = .black
+        
+        self.avatarBtn.isHidden = false
+        self.avatarBtn.isUserInteractionEnabled = true
     }
     
     func bindAll() {
@@ -55,6 +68,14 @@ class LoginlVC: UIViewController {
             print(indexSelected)
 
             self.navigationItem.title = self.loginOptionsSwitcher.titleForSegment(at: indexSelected.element ?? 0)
+            
+            self.emailTxtFld.isHidden = !self.emailTxtFld.isHidden
+            self.emailTxtFld.isUserInteractionEnabled = !self.emailTxtFld.isUserInteractionEnabled
+            self.confirmPassWordTxtLfld.isUserInteractionEnabled = !self.confirmPassWordTxtLfld.isUserInteractionEnabled
+            self.confirmPassWordTxtLfld.isHidden = !self.confirmPassWordTxtLfld.isHidden
+            self.avatarBtn.isHidden = !self.avatarBtn.isHidden
+            self.avatarBtn.isUserInteractionEnabled = !self.avatarBtn.isUserInteractionEnabled
+            
         }.disposed(by: self.viewModel.bag)
         
         self.viewModel.storedImage.asObservable().subscribe{ imageChange in
@@ -107,7 +128,6 @@ extension LoginlVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
         guard let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             return
         }
-        
         self.viewModel.storedImage.value = pickedImage
         dismiss(animated: true, completion: nil)
     }

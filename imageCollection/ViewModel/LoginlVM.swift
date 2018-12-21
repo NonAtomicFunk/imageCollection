@@ -14,11 +14,11 @@ final class LoginlVM {
     
     let bag = DisposeBag()
     
-    let storedImage = Variable<UIImage>(UIImage(named: "take-a-photo")! )
+    public let storedImage = Variable<UIImage>(UIImage(named: "take-a-photo")!)
     let userName = Variable<String>("")
     let email = Variable<String>("")
     let password = Variable<String>("")
-    let loginOptionChosen = Variable<LoginOptions>(.login)
+    let loginOptionChosen = Variable<LoginOptions>(.auth)
     
     func login() {
         
