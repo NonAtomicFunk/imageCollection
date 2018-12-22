@@ -50,6 +50,8 @@ class LoginlVC: UIViewController {
         self.emailTxtFld.isUserInteractionEnabled = true
         self.confirmPassWordTxtLfld.isHidden = false
         self.confirmPassWordTxtLfld.isUserInteractionEnabled = true
+        self.userNameTxtFld.isHidden = false
+        self.userNameTxtFld.isUserInteractionEnabled = true 
         
         avatarBtn.tintColor = .black
         dropAvatarBtn.tintColor = .black
@@ -74,8 +76,10 @@ class LoginlVC: UIViewController {
 
             self.navigationItem.title = self.loginOptionsSwitcher.titleForSegment(at: indexSelected.element ?? 0)
             
-            self.emailTxtFld.isHidden = !self.emailTxtFld.isHidden
-            self.emailTxtFld.isUserInteractionEnabled = !self.emailTxtFld.isUserInteractionEnabled
+//            self.emailTxtFld.isHidden = !self.emailTxtFld.isHidden
+//            self.emailTxtFld.isUserInteractionEnabled = !self.emailTxtFld.isUserInteractionEnabled
+            self.userNameTxtFld.isHidden = !self.userNameTxtFld.isHidden
+            self.userNameTxtFld.isUserInteractionEnabled = !self.userNameTxtFld.isUserInteractionEnabled
             self.confirmPassWordTxtLfld.isUserInteractionEnabled = !self.confirmPassWordTxtLfld.isUserInteractionEnabled
             self.confirmPassWordTxtLfld.isHidden = !self.confirmPassWordTxtLfld.isHidden
             self.avatarBtn.isHidden = !self.avatarBtn.isHidden

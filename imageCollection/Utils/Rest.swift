@@ -30,7 +30,7 @@ class Rest {
                        imageData: Data?) {
         
 //        var params: [String: Any] = [:]
-        var paramz: [String: String] = [:]
+        var paramz: [String: String]!
         
         let urlComponent = loginOption.rawValue
         let strUrl = Constants().baseURL+urlComponent
@@ -39,6 +39,7 @@ class Rest {
         switch loginOption {
         case .auth:
             
+            paramz = [:]
 //            print("image data: ", imageData)
 //            let convStr = imageData?.base64EncodedString()
             guard let dataSrtEncoded = imageData?.base64EncodedString() else {
@@ -52,6 +53,8 @@ class Rest {
                       "avatar": dataSrtEncoded]
             
         case .login:
+            
+            paramz = [:]
             paramz = ["email": email!,
                       "password": password]
         }
