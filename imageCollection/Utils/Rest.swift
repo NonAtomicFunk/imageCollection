@@ -39,7 +39,9 @@ class Rest {
         switch loginOption {
         case .auth:
             
-            guard let dataSrtEncoded = String(data: imageData!, encoding: .utf8) else {
+//            print("image data: ", imageData)
+//            let convStr = imageData?.base64EncodedString()
+            guard let dataSrtEncoded = imageData?.base64EncodedString() else {
                 print("data is not converted")
                 return
             }

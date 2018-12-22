@@ -21,8 +21,8 @@ final class LoginlVM {
     let loginOptionChosen = Variable<LoginOptions>(.auth)
     
     func login() {
-//        let data: Data = self.storedImage.value.pngData()!
-        let data = self.storedImage.value.jpegData(compressionQuality: 1)
+        let data: Data = self.storedImage.value.pngData()!
+//        let data = self.storedImage.value.jpegData(compressionQuality: 1)
         
         Rest.shared.authorisation(loginOption: self.loginOptionChosen.value,
                            userName: self.userName.value,
