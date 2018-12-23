@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
+import Alamofire
+import AlamofireImage
 
 class PicturesLisVC: BaseVC {
 
@@ -34,11 +38,21 @@ class PicturesLisVC: BaseVC {
     }
     
     func uiSetup()  {
-        
+        self.colelctionView.register(UINib(nibName: "IcCell", bundle: nil),
+                                     forCellWithReuseIdentifier: "IcCell")
     }
     
     func bindAll() {
         
+        (self.viewModel as! PicturesLisVM).dataModelsArray.asObservable()
+            .bind(to: self.colelctionView.rx.items(cellIdentifier: "IcCell", cellType: IcCell.self)) { row, model, cell in
+                
+                cell.adressLbl.text = model.adress
+                cell.weatherLbl.text = model.weather
+                let url = URL(string: model.imageUrl)!
+                cell.imageView.af_setImage(withURL: url)
+                
+            }.disposed(by: (self.viewModel as! PicturesLisVM).bag)
     }
     
     @objc func goToUpload() {

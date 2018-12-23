@@ -9,9 +9,25 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import Alamofire
+import AlamofireImage
 
 final class PicturesLisVM: BaseVM {
     
-//    let cellDataModels = Variable<[IcCellDataModel]>[]
+    let bag = DisposeBag()
     
+    let dataModelsArray = Variable<[IcCellDataModel]>([])
+    
+    func getAll() {
+        
+//        Alamofire
+        let decoder = JSONDecoder()
+        
+//        do {
+//            let decoded = try decoder.decode([IcCellDataModel].self, from: data)
+//            print(decoded[0].weather)
+//        } catch {
+//            print("Failed to decode JSON")
+//        }
+    }
 }

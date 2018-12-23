@@ -37,7 +37,6 @@ final class VCRouter: NSObject {
     func pushMarkerVC(_ vc: VcType) {
         print("should go to : ", vc)
         
-//        let navigationSontroller: UINavigationController = storyBoard.instantiateInitialViewController() as! UINavigationController
         let vcToGo: BaseVC!
         
         switch vc {
@@ -55,7 +54,7 @@ final class VCRouter: NSObject {
             vcToGo.viewModel = GifGeneratorVM()
         }
         
-            self.navigationSontroller.pushViewController(vcToGo, animated: true)
+        self.navigationSontroller.pushViewController(vcToGo, animated: true)
     }
     
     func popBack() {
