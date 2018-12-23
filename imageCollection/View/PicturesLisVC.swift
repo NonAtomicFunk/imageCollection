@@ -40,6 +40,7 @@ class PicturesLisVC: BaseVC {
     func uiSetup()  {
         self.colelctionView.register(UINib(nibName: "IcCell", bundle: nil),
                                      forCellWithReuseIdentifier: "IcCell")
+        self.colelctionView.delegate = self
     }
     
     func bindAll() {
@@ -64,6 +65,12 @@ class PicturesLisVC: BaseVC {
     }
 }
 
-extension PicturesLisVC: UICollectionViewDelegate {
-    
+extension PicturesLisVC: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let width = view.frame.size.width*0.22
+        return CGSize(width: width, height: width)
+    }
 }
