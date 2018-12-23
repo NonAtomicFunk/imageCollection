@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class LoginlVM {
+final class LoginlVM: BaseVM {
     
     let bag = DisposeBag()
     

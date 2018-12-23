@@ -1,5 +1,5 @@
 //
-//  OriginalVC.swift
+//  LoginlVC.swift
 //  imageCollection
 //
 //  Created by admin2 on 12/20/18.
@@ -137,7 +137,8 @@ class LoginlVC: UIViewController {
     }
     
     @IBAction func okBtnTapped(_ sender: Any) {
-        self.viewModel.login()
+//        self.viewModel.login()
+        self.viewModel.goto(.picturesLisVC)
     }
 }
 

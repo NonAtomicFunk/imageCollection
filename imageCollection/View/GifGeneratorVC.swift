@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GifGeneratorVC: UIViewController {
+class GifGeneratorVC: BaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()

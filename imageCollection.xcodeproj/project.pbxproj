@@ -14,13 +14,21 @@
 		BC671AAC21CBB48100E9A8B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC671AAB21CBB48100E9A8B3 /* Assets.xcassets */; };
 		BC671AAF21CBB48100E9A8B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC671AAD21CBB48100E9A8B3 /* LaunchScreen.storyboard */; };
 		BC671ABB21CBE00400E9A8B3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC671ABA21CBE00400E9A8B3 /* Constants.swift */; };
-		BC671ABD21CBE16300E9A8B3 /* OriginalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC671ABC21CBE16300E9A8B3 /* OriginalVC.swift */; };
+		BC671ABD21CBE16300E9A8B3 /* LoginlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC671ABC21CBE16300E9A8B3 /* LoginlVC.swift */; };
 		BC671ABF21CBE1E600E9A8B3 /* VCRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC671ABE21CBE1E600E9A8B3 /* VCRouter.swift */; };
 		BC671AC121CBE6F300E9A8B3 /* PicturesLisVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC671AC021CBE6F300E9A8B3 /* PicturesLisVC.swift */; };
 		BC671AC321CBE70D00E9A8B3 /* UploadNewPicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC671AC221CBE70D00E9A8B3 /* UploadNewPicVC.swift */; };
 		BC671AC621CBE82800E9A8B3 /* GifGeneratorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC671AC521CBE82800E9A8B3 /* GifGeneratorVC.swift */; };
 		BC671AC821CD51CF00E9A8B3 /* Rest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC671AC721CD51CF00E9A8B3 /* Rest.swift */; };
 		BC671ACA21CD557C00E9A8B3 /* LoginlVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC671AC921CD557C00E9A8B3 /* LoginlVM.swift */; };
+		BCE61E0D21CFFF79008D8A2E /* PicturesLisVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE61E0C21CFFF79008D8A2E /* PicturesLisVM.swift */; };
+		BCE61E0F21D0008E008D8A2E /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE61E0E21D0008E008D8A2E /* BaseVC.swift */; };
+		BCE61E1121D000BD008D8A2E /* BaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE61E1021D000BD008D8A2E /* BaseVM.swift */; };
+		BCE61E1321D00250008D8A2E /* GifGeneratorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE61E1221D00250008D8A2E /* GifGeneratorVM.swift */; };
+		BCE61E1521D00293008D8A2E /* UploadNewPicVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE61E1421D00293008D8A2E /* UploadNewPicVM.swift */; };
+		BCE61E1821D003BB008D8A2E /* IcCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE61E1621D003BB008D8A2E /* IcCell.swift */; };
+		BCE61E1921D003BB008D8A2E /* IcCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCE61E1721D003BB008D8A2E /* IcCell.xib */; };
+		BCE61E1B21D004DD008D8A2E /* IcCellDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE61E1A21D004DD008D8A2E /* IcCellDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,13 +43,21 @@
 		BC671AAE21CBB48100E9A8B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC671AB021CBB48100E9A8B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC671ABA21CBE00400E9A8B3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		BC671ABC21CBE16300E9A8B3 /* OriginalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalVC.swift; sourceTree = "<group>"; };
+		BC671ABC21CBE16300E9A8B3 /* LoginlVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginlVC.swift; sourceTree = "<group>"; };
 		BC671ABE21CBE1E600E9A8B3 /* VCRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCRouter.swift; sourceTree = "<group>"; };
 		BC671AC021CBE6F300E9A8B3 /* PicturesLisVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesLisVC.swift; sourceTree = "<group>"; };
 		BC671AC221CBE70D00E9A8B3 /* UploadNewPicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadNewPicVC.swift; sourceTree = "<group>"; };
 		BC671AC521CBE82800E9A8B3 /* GifGeneratorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifGeneratorVC.swift; sourceTree = "<group>"; };
 		BC671AC721CD51CF00E9A8B3 /* Rest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rest.swift; sourceTree = "<group>"; };
 		BC671AC921CD557C00E9A8B3 /* LoginlVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginlVM.swift; sourceTree = "<group>"; };
+		BCE61E0C21CFFF79008D8A2E /* PicturesLisVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesLisVM.swift; sourceTree = "<group>"; };
+		BCE61E0E21D0008E008D8A2E /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		BCE61E1021D000BD008D8A2E /* BaseVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVM.swift; sourceTree = "<group>"; };
+		BCE61E1221D00250008D8A2E /* GifGeneratorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifGeneratorVM.swift; sourceTree = "<group>"; };
+		BCE61E1421D00293008D8A2E /* UploadNewPicVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadNewPicVM.swift; sourceTree = "<group>"; };
+		BCE61E1621D003BB008D8A2E /* IcCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IcCell.swift; sourceTree = "<group>"; };
+		BCE61E1721D003BB008D8A2E /* IcCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IcCell.xib; sourceTree = "<group>"; };
+		BCE61E1A21D004DD008D8A2E /* IcCellDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IcCellDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +126,7 @@
 		BC671AB621CBDFA100E9A8B3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BCE61E1A21D004DD008D8A2E /* IcCellDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -117,7 +134,11 @@
 		BC671AB721CBDFAE00E9A8B3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BCE61E1021D000BD008D8A2E /* BaseVM.swift */,
 				BC671AC921CD557C00E9A8B3 /* LoginlVM.swift */,
+				BCE61E0C21CFFF79008D8A2E /* PicturesLisVM.swift */,
+				BCE61E1421D00293008D8A2E /* UploadNewPicVM.swift */,
+				BCE61E1221D00250008D8A2E /* GifGeneratorVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -125,11 +146,14 @@
 		BC671AB821CBDFB500E9A8B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BCE61E0E21D0008E008D8A2E /* BaseVC.swift */,
 				BC671AA521CBB47E00E9A8B3 /* Main.storyboard */,
-				BC671ABC21CBE16300E9A8B3 /* OriginalVC.swift */,
+				BC671ABC21CBE16300E9A8B3 /* LoginlVC.swift */,
 				BC671AC021CBE6F300E9A8B3 /* PicturesLisVC.swift */,
 				BC671AC221CBE70D00E9A8B3 /* UploadNewPicVC.swift */,
 				BC671AC521CBE82800E9A8B3 /* GifGeneratorVC.swift */,
+				BCE61E1621D003BB008D8A2E /* IcCell.swift */,
+				BCE61E1721D003BB008D8A2E /* IcCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -207,6 +231,7 @@
 				BC671AAF21CBB48100E9A8B3 /* LaunchScreen.storyboard in Resources */,
 				BC671AAC21CBB48100E9A8B3 /* Assets.xcassets in Resources */,
 				BC671AA721CBB47E00E9A8B3 /* Main.storyboard in Resources */,
+				BCE61E1921D003BB008D8A2E /* IcCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,12 +309,19 @@
 			files = (
 				BC671ABF21CBE1E600E9A8B3 /* VCRouter.swift in Sources */,
 				BC671AA221CBB47E00E9A8B3 /* AppDelegate.swift in Sources */,
-				BC671ABD21CBE16300E9A8B3 /* OriginalVC.swift in Sources */,
+				BC671ABD21CBE16300E9A8B3 /* LoginlVC.swift in Sources */,
+				BCE61E1821D003BB008D8A2E /* IcCell.swift in Sources */,
 				BC671AC821CD51CF00E9A8B3 /* Rest.swift in Sources */,
 				BC671AAA21CBB47E00E9A8B3 /* imageCollection.xcdatamodeld in Sources */,
+				BCE61E1321D00250008D8A2E /* GifGeneratorVM.swift in Sources */,
 				BC671ACA21CD557C00E9A8B3 /* LoginlVM.swift in Sources */,
+				BCE61E0D21CFFF79008D8A2E /* PicturesLisVM.swift in Sources */,
+				BCE61E1B21D004DD008D8A2E /* IcCellDataModel.swift in Sources */,
+				BCE61E1121D000BD008D8A2E /* BaseVM.swift in Sources */,
+				BCE61E0F21D0008E008D8A2E /* BaseVC.swift in Sources */,
 				BC671AC121CBE6F300E9A8B3 /* PicturesLisVC.swift in Sources */,
 				BC671AC621CBE82800E9A8B3 /* GifGeneratorVC.swift in Sources */,
+				BCE61E1521D00293008D8A2E /* UploadNewPicVM.swift in Sources */,
 				BC671ABB21CBE00400E9A8B3 /* Constants.swift in Sources */,
 				BC671AC321CBE70D00E9A8B3 /* UploadNewPicVC.swift in Sources */,
 			);

@@ -25,32 +25,37 @@ final class VCRouter: NSObject {
     
     override init() {
         super.init()
+        
         self.storyBoard = UIStoryboard(name: "Main", bundle: nil)
         self.navigationSontroller = storyBoard.instantiateInitialViewController() as? UINavigationController
+        self.navigationSontroller.navigationBar.tintColor = .black
         let uiWindow: UIWindow = UIApplication.shared.delegate!.window!!
         uiWindow.rootViewController = navigationSontroller
     }
     
     
     func pushMarkerVC(_ vc: VcType) {
+        print("should go to : ", vc)
         
-        let navigationSontroller: UINavigationController = storyBoard.instantiateInitialViewController() as! UINavigationController
-        let vcToGo: UIViewController!
+//        let navigationSontroller: UINavigationController = storyBoard.instantiateInitialViewController() as! UINavigationController
+        let vcToGo: BaseVC!
         
         switch vc {
         case .picturesLisVC:
             vcToGo = storyBoard.instantiateViewController(withIdentifier: vc.rawValue) as! PicturesLisVC
+            vcToGo.viewModel = PicturesLisVM()
+            vcToGo.navigationItem.hidesBackButton = true
+            
         case .uploadNewPicVC :
             vcToGo = storyBoard.instantiateViewController(withIdentifier: vc.rawValue) as! UploadNewPicVC
+            vcToGo.viewModel = UploadNewPicVM()
+            
         case .gifGeneratorVC:
             vcToGo = storyBoard.instantiateViewController(withIdentifier: vc.rawValue) as! GifGeneratorVC
+            vcToGo.viewModel = GifGeneratorVM()
         }
         
-//        vc.navigationItem.hidesBackButton = true
-//        vc.vm = ()
-//        defer {
-//            navigationSontroller.pushViewController(vc, animated: true)
-//        }
+            self.navigationSontroller.pushViewController(vcToGo, animated: true)
     }
     
     func popBack() {
