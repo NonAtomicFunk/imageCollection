@@ -40,8 +40,7 @@ class Rest {
         case .auth:
             
             paramz = [:]
-//            print("image data: ", imageData)
-//            let convStr = imageData?.base64EncodedString()
+
             guard let dataSrtEncoded = imageData?.base64EncodedString() else {
                 print("data is not converted")
                 return
@@ -65,9 +64,15 @@ class Rest {
                 return
             }
             multipartFromData.append(imageData!, withName: "avatar")
+            
+            //HARD CODE FORTEST
+//            multipartFromData.append(publiclyStoredImage.jpegData(compressionQuality: 0.85)!, withName: "avatar")
+            
+            
             for (key, value) in paramz {
 //                multipartFromData.append(, withName: key)
                 multipartFromData.append(value.data(using: .utf8)!, withName: key)
+                
             }
         },
                          to: url) { (mpEncodingResult) in
@@ -79,8 +84,6 @@ class Rest {
                                     }
                                     .uploadProgress { progress in //has to go in main queue by default
                                         
-//                                        self.img1Progress.progress = Float(progress.fractionCompleted)
-                                        
                                         print("Upload Progress: \(progress.fractionCompleted)")
                                 }
                                 return
@@ -89,16 +92,7 @@ class Rest {
                                 print("ERROR in Mulrypart: ", encodingError)
                             }
         }
-//                            switch mpEncodingResult {
-//                                case .success(request: <#T##UploadRequest#>,
-//                                              streamingFromDisk: <#T##Bool#>,
-//                                              streamFileURL: <#T##URL?#>)
-//                            case .failure(error):
-//                                print("error", error)
-//                            }
-                            
-                            
-        }
+    }
         
 //        Alamofire.request(url, method: .post, parameters: paramz, encoding: JSONEncoding.default, headers: nil).responseJSON {(response) in
 //                        print(response)
@@ -149,5 +143,5 @@ class Rest {
 //                print(response)
 //            }
 //        }
-    }
+}
 

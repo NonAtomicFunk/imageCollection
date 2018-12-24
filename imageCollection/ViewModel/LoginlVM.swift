@@ -14,7 +14,7 @@ final class LoginlVM: BaseVM {
     
     let bag = DisposeBag()
     
-    public let storedImage = Variable<UIImage>(UIImage(named: "take-a-photo")!)
+    public var storedImage = Variable<UIImage>(UIImage(named: "take-a-photo")!)
     let userName = Variable<String>("")
     let email = Variable<String>("")
     let password = Variable<String>("")
@@ -22,8 +22,8 @@ final class LoginlVM: BaseVM {
     
     func login() {
 //        let data: Data = self.storedImage.value.pngData()!
-        if let data = self.storedImage.value.jpegData(compressionQuality: 1) {
-            print("DATA ", data)
+        if let data = self.storedImage.value.jpegData(compressionQuality: 0.85) {
+            
             Rest.shared.authorisation(loginOption: self.loginOptionChosen.value,
                                       userName: self.userName.value,
                                       email: self.email.value,

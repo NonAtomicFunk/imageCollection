@@ -13,8 +13,11 @@ enum LoginOptions: String {
     case login = "/login"
 }
 
+enum GetType: String {
+    case all = "/all"
+    case gif = "/git"
+}
+
 class Constants {
     let baseURL = "http://api.doitserver.in.ua"
-    
-    
 }

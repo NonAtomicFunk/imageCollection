@@ -32,6 +32,7 @@ class LoginlVC: UIViewController {
         super.viewDidLoad()
         self.viewModel = LoginlVM()
         self.bindAll()
+        self.hideKeyBoard()
         self.uiSetup()
     }
     
@@ -76,8 +77,6 @@ class LoginlVC: UIViewController {
 
             self.navigationItem.title = self.loginOptionsSwitcher.titleForSegment(at: indexSelected.element ?? 0)
             
-//            self.emailTxtFld.isHidden = !self.emailTxtFld.isHidden
-//            self.emailTxtFld.isUserInteractionEnabled = !self.emailTxtFld.isUserInteractionEnabled
             self.userNameTxtFld.isHidden = !self.userNameTxtFld.isHidden
             self.userNameTxtFld.isUserInteractionEnabled = !self.userNameTxtFld.isUserInteractionEnabled
             self.confirmPassWordTxtLfld.isUserInteractionEnabled = !self.confirmPassWordTxtLfld.isUserInteractionEnabled
@@ -136,6 +135,11 @@ class LoginlVC: UIViewController {
 //        }.disposed(by: self.vm.bag)
     }
     
+    func hideKeyBoard() {
+        
+        
+    }
+    
     @IBAction func okBtnTapped(_ sender: Any) {
         self.viewModel.login()
         defer {
@@ -152,7 +156,11 @@ extension LoginlVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
         guard let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             return
         }
+        print("картінка есть ", pickedImage)
         self.viewModel.storedImage.value = pickedImage
-        dismiss(animated: true, completion: nil)
+        
+        defer {
+            dismiss(animated: true, completion: nil)
+        }
     }
 }
