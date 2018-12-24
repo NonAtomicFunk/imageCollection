@@ -59,9 +59,50 @@ class Rest {
                       "password": password]
         }
         
-        Alamofire.request(url, method: .post, parameters: paramz, encoding: JSONEncoding.default, headers: nil).responseJSON {(response) in
-                        print(response)
-                    }
+        Alamofire.upload(multipartFormData: { (multipartFromData) in
+            guard imageData != nil else {
+                print("image data is nil")
+                return
+            }
+            multipartFromData.append(imageData!, withName: "avatar")
+            for (key, value) in paramz {
+//                multipartFromData.append(, withName: key)
+                multipartFromData.append(value.data(using: .utf8)!, withName: key)
+            }
+        },
+                         to: url) { (mpEncodingResult) in
+                            
+                            switch mpEncodingResult {
+                            case .success(let upload, _, _):
+                                upload.responseString { response in
+                                    debugPrint(response)
+                                    }
+                                    .uploadProgress { progress in //has to go in main queue by default
+                                        
+//                                        self.img1Progress.progress = Float(progress.fractionCompleted)
+                                        
+                                        print("Upload Progress: \(progress.fractionCompleted)")
+                                }
+                                return
+                            case .failure(let encodingError):
+                                
+                                print("ERROR in Mulrypart: ", encodingError)
+                            }
+        }
+//                            switch mpEncodingResult {
+//                                case .success(request: <#T##UploadRequest#>,
+//                                              streamingFromDisk: <#T##Bool#>,
+//                                              streamFileURL: <#T##URL?#>)
+//                            case .failure(error):
+//                                print("error", error)
+//                            }
+                            
+                            
+        }
+        
+//        Alamofire.request(url, method: .post, parameters: paramz, encoding: JSONEncoding.default, headers: nil).responseJSON {(response) in
+//                        print(response)
+//                    }
         
 //        Alamofire.upload(multipartFormData: { (multipartFormData) in
 //            multipartFormData.append(imageData!, withName: "avatar")
@@ -109,4 +150,4 @@ class Rest {
 //            }
 //        }
     }
-}
+

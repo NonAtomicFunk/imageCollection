@@ -137,8 +137,10 @@ class LoginlVC: UIViewController {
     }
     
     @IBAction func okBtnTapped(_ sender: Any) {
-//        self.viewModel.login()
-        self.viewModel.goto(.picturesLisVC)
+        self.viewModel.login()
+        defer {
+            self.viewModel.goto(.picturesLisVC)
+        }
     }
 }
 
