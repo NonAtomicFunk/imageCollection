@@ -44,13 +44,49 @@ class Rest {
         return []
     }
     
-    func postImage(image: Data,
+    func postImage(imageData: Data,
                    description: String,
                    hashtag: String,
                    latitude: Double,
-                   longitude: Double) {
+                   longitude: Double,
+                   fileName: String,
+                   fileExtension: String/*,
+                   completionHandler: @escaping Void*/) {
         
+        let paramz = ["description": description,
+                      "hashtag": hashtag,
+                      "latitude": String(describing: latitude),
+                      "longitude": String(describing: longitude)]
         
+        let strUrl = Constants().baseURL+GetType.postImage.rawValue
+        let url = URL(string: strUrl)!
+        
+        self.aSessionManager.upload(multipartFormData: { (multipart) in
+            multipart.append(imageData, withName: "image", fileName: fileName, mimeType: fileExtension)
+            for (key, value) in paramz {
+                multipart.append(value.data(using: .utf8)!, withName: key)
+            }
+        },
+                                    usingThreshold: UInt64.init(),
+                                    to: url,
+                                    method: .post,
+                                    headers: self.storedToken!,
+                                    queue: nil) { (resuleEncoded) in
+                                        
+                                        switch resuleEncoded {
+                                        case .success(let upload, _, _):
+                                            
+                                            
+                                            upload.responseJSON { response in
+                                                print(response.result.value)
+                                            }
+                                            VCRouter.singltone.popBack()
+                                            return
+                                            
+                                        case .failure(let error):
+                                            print("error in uploading image: ", error)
+                                        }
+        }
         
     }
     

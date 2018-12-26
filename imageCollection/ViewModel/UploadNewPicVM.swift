@@ -22,13 +22,21 @@ final class UploadNewPicVM: BaseVM {
     
     func uploadImage() {
         
-        let dataToPass = self.storeImage.value.jpegData(compressionQuality: 0.85)
+        let assetName = "asset_"+String(describing: Date())
         
-        Rest.shared.postImage(image: dataToPass!,
+        print("ASSET NAME: ", assetName)
+        print("coords? ", coords.value.first!.coordinate.latitude)
+        let dataToPass = self.storeImage.value.jpegData(compressionQuality: 0.5)
+        
+        Rest.shared.postImage(imageData: dataToPass!,
                               description: self.descrToPass.value,
                               hashtag: self.hashagToPass.value,
-                              latitude: self.coords.value.last!.coordinate.latitude,
-                              longitude: self.coords.value.last!.coordinate.longitude)
+                              latitude: self.coords.value.first!.coordinate.latitude,
+                              longitude: self.coords.value.first!.coordinate.longitude,
+                              fileName: assetName,
+                              fileExtension: "JPG"/*,
+                              completionHandler: VCRouter.singltone.popBack()*/)
+        
     }
 }
 

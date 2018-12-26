@@ -19,7 +19,7 @@ class UploadNewPicVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("hello")
         self.locationSetup()
         self.imagePickerSetup()
         self.setupNav()
@@ -54,11 +54,24 @@ class UploadNewPicVC: BaseVC {
     
     func bindAll() {
         
+        (self.viewModel as! UploadNewPicVM).storeImage.asObservable().subscribe{ [weak self] imageChange in
+            
+            self?.photoBtn.setImage((self!.viewModel as! UploadNewPicVM).storeImage.value, for: .normal)
+            }.disposed(by: (self.viewModel as! UploadNewPicVM).bag)
+        
+        self.descrTxtFld.rx.text.orEmpty.asObservable()
+            .bind(to: (self.viewModel as! UploadNewPicVM).descrToPass)
+            .disposed(by: (self.viewModel as! UploadNewPicVM).bag)
+        
+        self.heshTagTxtFld.rx.text.orEmpty.asObservable()
+            .bind(to: (self.viewModel as! UploadNewPicVM).hashagToPass)
+            .disposed(by: (self.viewModel as! UploadNewPicVM).bag)
     }
     
     @objc func checkBtnTapped() {
         (self.viewModel as! UploadNewPicVM).uploadImage()
     }
+        
 }
 
 extension UploadNewPicVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -70,6 +83,7 @@ extension UploadNewPicVC: UIImagePickerControllerDelegate, UINavigationControlle
         }
         
         (self.viewModel as! UploadNewPicVM).storeImage.value = pickedImage
+        
         dismiss(animated: true, completion: nil)
     }
 }
@@ -77,6 +91,7 @@ extension UploadNewPicVC: UIImagePickerControllerDelegate, UINavigationControlle
 extension UploadNewPicVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.first!
+        print("Location? ", location)
         (self.viewModel as! UploadNewPicVM).coords.value.append(location)
     }
 }

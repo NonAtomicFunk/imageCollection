@@ -218,7 +218,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NO-64-zX5">
-                                <rect key="frame" x="125" y="184" width="125" height="125"/>
+                                <rect key="frame" x="125" y="76" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="125" id="1ZA-Dn-ktr"/>
                                     <constraint firstAttribute="width" constant="125" id="ZJP-Ia-6LF"/>
@@ -226,13 +226,13 @@
                                 <state key="normal" image="taking-a-shot"/>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8sX-je-Uaf">
-                                <rect key="frame" x="56.5" y="361" width="262.5" height="30"/>
+                                <rect key="frame" x="56.5" y="233" width="262.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="#hashtag" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09X-ty-lcw">
-                                <rect key="frame" x="56.5" y="433" width="262.5" height="30"/>
+                                <rect key="frame" x="56.5" y="295" width="262.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -241,9 +241,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0NO-64-zX5" firstAttribute="centerX" secondItem="glL-3I-A8N" secondAttribute="centerX" id="3mS-1S-0G3"/>
-                            <constraint firstItem="0NO-64-zX5" firstAttribute="top" secondItem="NbN-Ig-XxM" secondAttribute="top" constant="120" id="NMz-Zd-D5B"/>
-                            <constraint firstItem="8sX-je-Uaf" firstAttribute="top" secondItem="0NO-64-zX5" secondAttribute="bottom" constant="52" id="Tsc-ly-ogi"/>
-                            <constraint firstItem="09X-ty-lcw" firstAttribute="top" secondItem="8sX-je-Uaf" secondAttribute="bottom" constant="42" id="W15-4e-XJo"/>
+                            <constraint firstItem="0NO-64-zX5" firstAttribute="top" secondItem="NbN-Ig-XxM" secondAttribute="top" constant="12" id="NMz-Zd-D5B"/>
+                            <constraint firstItem="8sX-je-Uaf" firstAttribute="top" secondItem="0NO-64-zX5" secondAttribute="bottom" constant="32" id="Tsc-ly-ogi"/>
+                            <constraint firstItem="09X-ty-lcw" firstAttribute="top" secondItem="8sX-je-Uaf" secondAttribute="bottom" constant="32" id="W15-4e-XJo"/>
                             <constraint firstItem="8sX-je-Uaf" firstAttribute="centerX" secondItem="glL-3I-A8N" secondAttribute="centerX" id="bGu-ar-Yke"/>
                             <constraint firstItem="09X-ty-lcw" firstAttribute="width" secondItem="8sX-je-Uaf" secondAttribute="width" id="bYu-q8-vdQ"/>
                             <constraint firstItem="09X-ty-lcw" firstAttribute="centerX" secondItem="glL-3I-A8N" secondAttribute="centerX" id="jhY-Wr-tpD"/>
