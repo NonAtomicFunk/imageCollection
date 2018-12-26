@@ -21,7 +21,6 @@ final class LoginlVM: BaseVM {
     let loginOptionChosen = Variable<LoginOptions>(.auth)
     
     func login() {
-//        let data: Data = self.storedImage.value.pngData()!
         if let data = self.storedImage.value.jpegData(compressionQuality: 0.85) {
             
             Rest.shared.authorisation(loginOption: self.loginOptionChosen.value,
@@ -29,6 +28,12 @@ final class LoginlVM: BaseVM {
                                       email: self.email.value,
                                       password: self.password.value,
                                       imageData: data)
+//            defer {
+//                if Rest.shared.isUpdating.value == false && Rest.shared.storedToken["token"] != "" {
+//                    VCRouter.singltone.pushMarkerVC(.picturesLisVC)
+//                }
+                
+//            }
         }
     }
 }

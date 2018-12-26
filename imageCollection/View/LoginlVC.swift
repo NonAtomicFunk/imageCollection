@@ -31,9 +31,19 @@ class LoginlVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = LoginlVM()
+        
+        self.hardCode()
+        
         self.bindAll()
         self.hideKeyBoard()
         self.uiSetup()
+    }
+    
+    func hardCode() {
+        self.userNameTxtFld.text = "userName"
+        self.emailTxtFld.text = "email@user.com"
+        self.passWordTxtFld.text = "pass"
+        self.confirmPassWordTxtLfld.text = "pass"
     }
     
     func uiSetup() {
@@ -87,9 +97,13 @@ class LoginlVC: UIViewController {
             if self.loginOptionsSwitcher.selectedSegmentIndex == 1 {
                 self.dropAvatarBtn.isHidden = true
                 self.dropAvatarBtn.isUserInteractionEnabled = false
+                self.viewModel.loginOptionChosen.value = LoginOptions.login
             } else if self.loginOptionsSwitcher.selectedSegmentIndex == 0 && self.avatarBtn.imageView!.image != UIImage(named: "take-a-photo")! {
                 self.dropAvatarBtn.isHidden = false
                 self.dropAvatarBtn.isUserInteractionEnabled = true
+                self.viewModel.loginOptionChosen.value = LoginOptions.auth
+            } else if self.loginOptionsSwitcher.selectedSegmentIndex == 0 {
+                self.viewModel.loginOptionChosen.value = LoginOptions.auth
             }
             
         }.disposed(by: self.viewModel.bag)
@@ -142,9 +156,9 @@ class LoginlVC: UIViewController {
     
     @IBAction func okBtnTapped(_ sender: Any) {
         self.viewModel.login()
-        defer {
-            self.viewModel.goto(.picturesLisVC)
-        }
+//        defer {
+//            self.viewModel.goto(.picturesLisVC)
+//        }
     }
 }
 

@@ -16,6 +16,7 @@ enum LoginOptions: String {
 enum GetType: String {
     case all = "/all"
     case gif = "/git"
+    case postImage = "/image"
 }
 
 class Constants {

@@ -14,12 +14,44 @@ import RxCocoa
 
 class Rest {
     static let shared = Rest()
+    
+    let aSessionManager = Alamofire.SessionManager()
+    fileprivate var storedToken: [String: String]! // = ["token": ""]
+    let isUpdating = Variable<Bool>(false)
 
-    public func getAll(/*loginOptionChosen: LoginOptions,
-                       userName: String,
-                       email: String?,
-                       password: String,
-                       imageData: Data?*/) {
+    public func getAll(_ completionHandler: @escaping ([IcCellDataModel]) -> Void) -> [IcCellDataModel] {
+        print("tokem header: ", self.storedToken, "@Ends roken")
+        let strUrl = Constants().baseURL+GetType.all.rawValue
+        let url = URL(string: strUrl)!
+        print("Get all url: ", strUrl)
+        
+        self.aSessionManager.request(url,
+                                     method: .get,
+                                     parameters: nil,
+                                     encoding: JSONEncoding.default,
+                                     headers: self.storedToken!).responseJSON { response in
+            print("getAll response: ", response.result.value, "@Ends getAll")
+                                        
+            let decoder = JSONDecoder()
+    //        do {
+    //            let decoded = try decoder.decode([IcCellDataModel].self, from: data)
+    //            print(decoded[0].weather)
+    //        } catch {
+    //            print("Failed to decode JSON")
+    //        }
+        }
+        
+        return []
+    }
+    
+    func postImage(image: Data,
+                   description: String,
+                   hashtag: String,
+                   latitude: Double,
+                   longitude: Double) {
+        
+        
+        
     }
     
     
@@ -29,119 +61,94 @@ class Rest {
                        password: String,
                        imageData: Data?) {
         
-//        var params: [String: Any] = [:]
+        self.isUpdating.value = true
+        defer {self.isUpdating.value = false}
+        
         var paramz: [String: String]!
         
         let urlComponent = loginOption.rawValue
         let strUrl = Constants().baseURL+urlComponent
         let url = URL(string: strUrl)!
         
+        print("Login option? : ", loginOption)
+        
         switch loginOption {
-        case .auth:
-            
-            paramz = [:]
-
-            guard let dataSrtEncoded = imageData?.base64EncodedString() else {
-                print("data is not converted")
-                return
-            }
-            
-            paramz = ["username": userName,
-                      "email": email!,
-                      "password": password,
-                      "avatar": dataSrtEncoded]
-            
         case .login:
             
             paramz = [:]
             paramz = ["email": email!,
                       "password": password]
-        }
-        
-        Alamofire.upload(multipartFormData: { (multipartFromData) in
-            guard imageData != nil else {
-                print("image data is nil")
-                return
-            }
-            multipartFromData.append(imageData!, withName: "avatar")
             
-            //HARD CODE FORTEST
-//            multipartFromData.append(publiclyStoredImage.jpegData(compressionQuality: 0.85)!, withName: "avatar")
-            
-            
-            for (key, value) in paramz {
-//                multipartFromData.append(, withName: key)
-                multipartFromData.append(value.data(using: .utf8)!, withName: key)
-                
-            }
-        },
-                         to: url) { (mpEncodingResult) in
-                            
-                            switch mpEncodingResult {
-                            case .success(let upload, _, _):
-                                upload.responseString { response in
-                                    debugPrint(response)
-                                    }
-                                    .uploadProgress { progress in //has to go in main queue by default
-                                        
-                                        print("Upload Progress: \(progress.fractionCompleted)")
-                                }
-                                return
-                            case .failure(let encodingError):
-                                
-                                print("ERROR in Mulrypart: ", encodingError)
+            self.aSessionManager.request(url,
+                                         method: .post,
+                                         parameters: paramz,
+                                         encoding: JSONEncoding.default,
+                                         headers: nil).responseJSON { response in
+                do {
+                    response.result.withValue({ (resultRaw) in
+                        if let rawDict = resultRaw as? [String: String] {
+                            let token = rawDict["token"]
+                            self.storedToken = ["token": token!]
+                            print("!!! WE GOT TOKEN", token!, "header: ", self.storedToken)
+//                            self.storedToken.updateValue(token!, forKey: "token")
+                            if token != nil {
+                                defer {VCRouter.singltone.pushMarkerVC(.picturesLisVC)}
                             }
+                        }
+                    })
+                }
+            }
+            
+        case .auth:
+            
+            paramz = [:]
+            
+            paramz = ["username": userName,
+                      "email": email!,
+                      "password": password]
+            
+            self.aSessionManager.upload(multipartFormData: { (multipartFromData) in
+                guard imageData != nil else {
+                    print("image data is nil")
+                    return
+                }
+                
+                multipartFromData.append(imageData!, withName: "avatar", fileName: "avatarPic", mimeType: "jpeg")
+                
+                for (key, value) in paramz {
+                    multipartFromData.append(value.data(using: .utf8)!, withName: key)
+                    
+                }
+            },
+            to: url) { (mpEncodingResult) in
+                
+                switch mpEncodingResult {
+                case .success(let upload, _, _):
+                    upload.responseJSON { response in
+
+                        do {
+                            response.result.withValue({ (resultRaw) in
+                                if let rawDict = resultRaw as? [String: String] {
+                                    let token = rawDict["token"]
+                                    self.storedToken = ["token": token!]
+                                    print("WE GOT TOKEN", token!, "header: ", self.storedToken)
+//                                    self.storedToken.updateValue(token!, forKey: "token")
+                                    VCRouter.singltone.pushMarkerVC(.picturesLisVC)
+                                }
+                            })
+                        }
+                        }
+                        .uploadProgress { progress in
+                            
+                            print("Upload Progress: \(progress.fractionCompleted)")
+                    }
+                    return
+                case .failure(let encodingError):
+                    
+                    print("ERROR in Mulrypart: ", encodingError)
+                }
+            }
         }
     }
-        
-//        Alamofire.request(url, method: .post, parameters: paramz, encoding: JSONEncoding.default, headers: nil).responseJSON {(response) in
-//                        print(response)
-//                    }
-        
-//        Alamofire.upload(multipartFormData: { (multipartFormData) in
-//            multipartFormData.append(imageData!, withName: "avatar")
-//
-//            for (key, value) in paramz {
-//                multipartFormData.append(value.data(using: .utf8)!, withName: key)
-//            }
-//        }, usingThreshold: UInt64.init(),
-//           to: url,
-//           method: .post,
-//           headers: nil) { (response) in
-//
-//            switch response {
-//            case .success(let upload, _, _):
-//
-//                upload.responseJSON { response in
-//
-//                    print("request: ", response.request, "@nds")  // original URL request
-//                    print("response: ", response.response, "@nds") // URL response
-//                    print("data: ", response.data, "@nds")     // server data
-//                    print("result: ", response.result, "@nds")   // result of response serialization
-//
-//                    if let JSON = response.result.value {
-//                        print("JSON: \(JSON)")
-//                    }
-//                }
-//
-//            case .failure(let encodingError):
-//                //self.delegate?.showFailAlert()
-//                print(encodingError, "oh really?! MP error")
-//            }
-//        }
-        
-//        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON {(response) in
-//            print(response)
-//        }
-        
-//        Alamofire.request(url).responseJSON { response in
-        
-//        Alamofire.request(url, method: .post, parameters: params, encoding: .JSONEncoding.default, headers: nil).responseJSON{ (response) in
-//            if response.result.isSuccess {
-//                print(response)
-//            } else {
-//                print(response)
-//            }
-//        }
 }
 

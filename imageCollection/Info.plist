@@ -10,6 +10,8 @@
 	<string>Let us access your photo library, please</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Let us access your camera, please</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Let us ask for you location, please</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

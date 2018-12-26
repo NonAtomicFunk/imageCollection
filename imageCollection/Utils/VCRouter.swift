@@ -35,7 +35,6 @@ final class VCRouter: NSObject {
     
     
     func pushMarkerVC(_ vc: VcType) {
-        print("should go to : ", vc)
         
         let vcToGo: BaseVC!
         

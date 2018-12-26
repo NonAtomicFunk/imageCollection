@@ -19,15 +19,10 @@ final class PicturesLisVM: BaseVM {
     let dataModelsArray = Variable<[IcCellDataModel]>([])
     
     func getAll() {
-        
-//        Alamofire
-        let decoder = JSONDecoder()
-        
-//        do {
-//            let decoded = try decoder.decode([IcCellDataModel].self, from: data)
-//            print(decoded[0].weather)
-//        } catch {
-//            print("Failed to decode JSON")
-//        }
+        print(self, "HELLO")
+        Rest.shared.getAll({(array) in
+            let arrayToStore = array
+            self.dataModelsArray.value = array
+        })        
     }
 }

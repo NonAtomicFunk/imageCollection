@@ -21,6 +21,7 @@ class PicturesLisVC: BaseVC {
         self.setupNav()
         self.uiSetup()
         self.bindAll()
+        (self.viewModel as! PicturesLisVM).getAll()
     }
     
     func setupNav() {
