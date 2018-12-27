@@ -19,10 +19,9 @@ final class PicturesLisVM: BaseVM {
     let dataModelsArray = Variable<[IcCellDataModel]>([])
     
     func getAll() {
-        print(self, "HELLO")
         Rest.shared.getAll({(array) in
             let arrayToStore = array
-            self.dataModelsArray.value = array
+            self.dataModelsArray.value = arrayToStore
         })        
     }
 }

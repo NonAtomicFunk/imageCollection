@@ -98,7 +98,7 @@ extension UploadNewPicVC: UIImagePickerControllerDelegate, UINavigationControlle
 extension UploadNewPicVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.first!
-        print("Location? ", location)
+        
         (self.viewModel as! UploadNewPicVM).coords.value.append(location)
     }
 }

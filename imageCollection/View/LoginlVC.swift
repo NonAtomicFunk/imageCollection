@@ -35,7 +35,6 @@ class LoginlVC: UIViewController {
         self.hardCode()
         
         self.bindAll()
-        self.hideKeyBoard()
         self.uiSetup()
     }
     
@@ -95,6 +94,7 @@ class LoginlVC: UIViewController {
             self.avatarBtn.isUserInteractionEnabled = !self.avatarBtn.isUserInteractionEnabled
             
             if self.loginOptionsSwitcher.selectedSegmentIndex == 1 {
+                self.matchWarningLbl.isHidden = true
                 self.dropAvatarBtn.isHidden = true
                 self.dropAvatarBtn.isUserInteractionEnabled = false
                 self.viewModel.loginOptionChosen.value = LoginOptions.login
@@ -104,6 +104,10 @@ class LoginlVC: UIViewController {
                 self.viewModel.loginOptionChosen.value = LoginOptions.auth
             } else if self.loginOptionsSwitcher.selectedSegmentIndex == 0 {
                 self.viewModel.loginOptionChosen.value = LoginOptions.auth
+                
+                if self.confirmPassWordTxtLfld.text! != self.passWordTxtFld.text! {
+                    self.matchWarningLbl.isHidden = false
+                }
             }
             
         }.disposed(by: self.viewModel.bag)
@@ -140,25 +144,35 @@ class LoginlVC: UIViewController {
                 }
         }.disposed(by: self.viewModel.bag)
         
-        //scroll up TODO
-//        self.passWordTxtFld.rx.didBeginEditing.subscribe({ n in
-//
-//        }).disposed(by: self.vm.bag)
-//        self.passWordTxtFld.rx.didEndEditing.subscribe { _ in
-//
-//        }.disposed(by: self.vm.bag)
+        self.passWordTxtFld.rx.controlEvent(UIControlEvents.editingDidEnd).subscribe { _ in
+            if self.confirmPassWordTxtLfld.text! != self.passWordTxtFld.text! {
+                self.matchWarningLbl.isHidden = false
+            }
+            }.disposed(by: self.viewModel.bag)
+        
+        self.confirmPassWordTxtLfld.rx.controlEvent(.editingDidBegin).subscribe {_ in
+            self.matchWarningLbl.isHidden = true
+        }.disposed(by: self.viewModel.bag)
+        
+        self.passWordTxtFld.rx.controlEvent(.editingDidBegin).subscribe { _ in
+            self.matchWarningLbl.isHidden = true
+        }.disposed(by: self.viewModel.bag)
+        
+        self.hideKeyBoard(self.userNameTxtFld)
+        self.hideKeyBoard(self.emailTxtFld)
+        self.hideKeyBoard(self.passWordTxtFld)
+        self.hideKeyBoard(self.confirmPassWordTxtLfld)
     }
     
-    func hideKeyBoard() {
+    func hideKeyBoard(_ txtFld: UITextField) {
         
-        
+        txtFld.rx.controlEvent([.editingDidEndOnExit]).subscribe { [weak self] text in
+            print(text)
+            }.disposed(by: (self.viewModel as! LoginlVM).bag)
     }
     
     @IBAction func okBtnTapped(_ sender: Any) {
         self.viewModel.login()
-//        defer {
-//            self.viewModel.goto(.picturesLisVC)
-//        }
     }
 }
 
@@ -170,7 +184,6 @@ extension LoginlVC: UIImagePickerControllerDelegate, UINavigationControllerDeleg
         guard let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             return
         }
-        print("картінка есть ", pickedImage)
         self.viewModel.storedImage.value = pickedImage
         
         defer {

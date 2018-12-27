@@ -28,12 +28,7 @@ final class LoginlVM: BaseVM {
                                       email: self.email.value,
                                       password: self.password.value,
                                       imageData: data)
-//            defer {
-//                if Rest.shared.isUpdating.value == false && Rest.shared.storedToken["token"] != "" {
-//                    VCRouter.singltone.pushMarkerVC(.picturesLisVC)
-//                }
-                
-//            }
+
         }
     }
 }
