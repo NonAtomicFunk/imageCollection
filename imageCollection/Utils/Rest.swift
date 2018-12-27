@@ -101,7 +101,7 @@ class Rest {
                                         
                                         switch response.result {
                                         case .failure(let error):
-                                            print("GIF REST ERRRO", error)
+                                            print("GIF REST ERRROR", error)
                                             
                                         case .success(let value):
                                             print("GIT IS OK: ", value)
