@@ -39,8 +39,9 @@ class Rest {
     //            print("Failed to decode JSON")
     //        }
                                         do {
-                                            let parsedResults: IcCellDataModel = try! decoder.decode(IcCellDataModel.self, from: response.result.value as! Data)
-                                            print(parsedResults)
+//                                            let parsedResults: IcCellDataModel = try! decoder.decode([IcCellDataModelList].self, from: response.result.value as! Data)
+                                            let parsedResults: IcCellDataModelList = try! decoder.decode(IcCellDataModelList.self, from: response.result.value as! Data)
+                                            print(parsedResults.images)
 //                                            completionHandler([parsedResults])
                                         }
         }

@@ -16,9 +16,7 @@ struct IcCellDataModel: Codable {
     enum CodingKeys: String, CodingKey {
         case smallImage
         case parameters
-        case items
-//        case weather
-//        case adress
+        case images
     }
     enum ParametersCodingKeys: String, CodingKey {
         case address = "address"
@@ -41,7 +39,19 @@ struct IcCellDataModel: Codable {
         let parametersContainer = try container.nestedContainer(keyedBy: ParametersCodingKeys.self, forKey: .parameters)
         self.weather = try parametersContainer.decode(String.self, forKey: .weather)
         self.adress = try parametersContainer.decode(String.self, forKey: .address)
-//        weather = try container.decode(String.self, forKey: .weather)
-//        adress = try container.decode(String.self, forKey: .adress)
+    }
+}
+
+struct IcCellDataModelList: Decodable {
+    
+    let images: [IcCellDataModel]
+    
+    enum CodingKeys: String, CodingKey {
+        case images
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.images = try container.decode([IcCellDataModel].self, forKey: .images)
     }
 }
