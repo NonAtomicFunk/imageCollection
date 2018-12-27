@@ -106,7 +106,6 @@ class Rest {
                                         case .success(let value):
                                             print("GIT IS OK: ", value)
                                         }
-                                        print("GIF RESPONSE: ", response.result.value, "@ENDS")
         }
     }
     
