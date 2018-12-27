@@ -51,7 +51,7 @@ class PicturesLisVC: BaseVC {
                 
                 cell.adressLbl.text = model.adress
                 cell.weatherLbl.text = model.weather
-                let url = URL(string: model.imageUrl)!
+                let url = URL(string: model.smallImage)!
                 cell.imageView.af_setImage(withURL: url)
                 
             }.disposed(by: (self.viewModel as! PicturesLisVM).bag)

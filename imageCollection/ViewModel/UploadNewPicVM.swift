@@ -18,7 +18,7 @@ final class UploadNewPicVM: BaseVM {
     let storeImage = Variable<UIImage>(UIImage(named: "taking-a-shot")!)
     let descrToPass = Variable<String>("")
     let hashagToPass = Variable<String>("")
-    let coords = Variable<[CLLocation]>([])
+    let coords = Variable<[CLLocation]>([]) //Can't figure out how to get Photo's gep tag as ALAssetsLibrary has been deprecated in Swift 4, and i kinda missed that
     
     func uploadImage() {
         

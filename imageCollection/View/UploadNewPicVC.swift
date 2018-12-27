@@ -84,6 +84,8 @@ extension UploadNewPicVC: UIImagePickerControllerDelegate, UINavigationControlle
         
         (self.viewModel as! UploadNewPicVM).storeImage.value = pickedImage
         
+        //Can't figure out how to get Photo's gep tag as ALAssetsLibrary has been deprecated in Swift 4, and i kinda missed that
+        
         dismiss(animated: true, completion: nil)
     }
 }

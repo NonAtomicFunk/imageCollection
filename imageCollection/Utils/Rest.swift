@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Foundation
 import Alamofire
 import RxSwift
 import RxCocoa
@@ -39,6 +38,11 @@ class Rest {
     //        } catch {
     //            print("Failed to decode JSON")
     //        }
+                                        do {
+                                            let parsedResults: IcCellDataModel = try! decoder.decode(IcCellDataModel.self, from: response.result.value as! Data)
+                                            print(parsedResults)
+//                                            completionHandler([parsedResults])
+                                        }
         }
         
         return []
