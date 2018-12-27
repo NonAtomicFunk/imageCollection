@@ -15,34 +15,27 @@ class Rest {
     static let shared = Rest()
     
     let aSessionManager = Alamofire.SessionManager()
-    fileprivate var storedToken: [String: String]! // = ["token": ""]
+    fileprivate var storedToken: [String: String]!
     let isUpdating = Variable<Bool>(false)
 
     public func getAll(_ completionHandler: @escaping ([IcCellDataModel]) -> Void) -> [IcCellDataModel] {
-        print("tokem header: ", self.storedToken, "@Ends roken")
+
         let strUrl = Constants().baseURL+GetType.all.rawValue
         let url = URL(string: strUrl)!
-        print("Get all url: ", strUrl)
         
         self.aSessionManager.request(url,
                                      method: .get,
                                      parameters: nil,
                                      encoding: JSONEncoding.default,
                                      headers: self.storedToken!).responseJSON { response in
-            print("getAll response: ", response.result.value, "@Ends getAll")
                                         
             let decoder = JSONDecoder()
-    //        do {
-    //            let decoded = try decoder.decode([IcCellDataModel].self, from: data)
-    //            print(decoded[0].weather)
-    //        } catch {
-    //            print("Failed to decode JSON")
-    //        }
+
                                         do {
-//                                            let parsedResults: IcCellDataModel = try! decoder.decode([IcCellDataModelList].self, from: response.result.value as! Data)
-                                            let parsedResults: IcCellDataModelList = try! decoder.decode(IcCellDataModelList.self, from: response.result.value as! Data)
+
+                                            let parsedResults: IcCellDataModelList = try! decoder.decode(IcCellDataModelList.self, from: response.data!)
                                             print(parsedResults.images)
-//                                            completionHandler([parsedResults])
+                                            completionHandler(parsedResults.images)
                                         }
         }
         
@@ -55,8 +48,7 @@ class Rest {
                    latitude: Double,
                    longitude: Double,
                    fileName: String,
-                   fileExtension: String/*,
-                   completionHandler: @escaping Void*/) {
+                   fileExtension: String) {
         
         let paramz = ["description": description,
                       "hashtag": hashtag,
@@ -81,7 +73,6 @@ class Rest {
                                         switch resuleEncoded {
                                         case .success(let upload, _, _):
                                             
-                                            
                                             upload.responseJSON { response in
                                                 print(response.result.value)
                                             }
@@ -95,6 +86,29 @@ class Rest {
         
     }
     
+    func getGif() {
+        
+        let params = ["weather": "Clouds"] // can't use all the weather cases, as they are not provided, nor seen in API response
+        
+        let strUrl = Constants().baseURL+GetType.gif.rawValue
+        let url = URL(string: strUrl)!
+        print("Get gif url: ", strUrl)
+        self.aSessionManager.request(url,
+                                     method: .get,
+                                     parameters: params,
+                                     encoding: JSONEncoding.default,
+                                     headers: self.storedToken).responseJSON { response in
+                                        
+                                        switch response.result {
+                                        case .failure(let error):
+                                            print("GIF REST ERRRO", error)
+                                            
+                                        case .success(let value):
+                                            print("GIT IS OK: ", value)
+                                        }
+                                        print("GIF RESPONSE: ", response.result.value!, "@ENDS")
+        }
+    }
     
     func authorisation(loginOption: LoginOptions,
                        userName: String,
@@ -111,7 +125,6 @@ class Rest {
         let strUrl = Constants().baseURL+urlComponent
         let url = URL(string: strUrl)!
         
-        print("Login option? : ", loginOption)
         
         switch loginOption {
         case .login:
@@ -130,8 +143,6 @@ class Rest {
                         if let rawDict = resultRaw as? [String: String] {
                             let token = rawDict["token"]
                             self.storedToken = ["token": token!]
-                            print("!!! WE GOT TOKEN", token!, "header: ", self.storedToken)
-//                            self.storedToken.updateValue(token!, forKey: "token")
                             if token != nil {
                                 defer {VCRouter.singltone.pushMarkerVC(.picturesLisVC)}
                             }
@@ -172,8 +183,6 @@ class Rest {
                                 if let rawDict = resultRaw as? [String: String] {
                                     let token = rawDict["token"]
                                     self.storedToken = ["token": token!]
-                                    print("WE GOT TOKEN", token!, "header: ", self.storedToken)
-//                                    self.storedToken.updateValue(token!, forKey: "token")
                                     VCRouter.singltone.pushMarkerVC(.picturesLisVC)
                                 }
                             })

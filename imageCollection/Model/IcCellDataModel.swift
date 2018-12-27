@@ -9,12 +9,17 @@
 import Foundation
 
 struct IcCellDataModel: Codable {
-    let smallImage: String
+    let smallImagePath: String
     let weather: String
-    let adress: String
+//    let adress: String?
+    /*
+     Fdress got obsoleted from API response,
+     as it used to return "adress" fiel,
+     but now it returns latitude and longtitude ones
+     */
     
     enum CodingKeys: String, CodingKey {
-        case smallImage
+        case smallImagePath
         case parameters
         case images
     }
@@ -26,7 +31,7 @@ struct IcCellDataModel: Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        try container.encode(smallImage, forKey: .smallImage)
+        try container.encode(smallImagePath, forKey: .smallImagePath)
 //        try container.encode(weather, forKey: .weather)
 //        try container.encode(adress, forKey: .adress)
     }
@@ -34,11 +39,11 @@ struct IcCellDataModel: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        smallImage = try container.decode(String.self, forKey: .smallImage)
+        smallImagePath = try container.decode(String.self, forKey: .smallImagePath)
         
         let parametersContainer = try container.nestedContainer(keyedBy: ParametersCodingKeys.self, forKey: .parameters)
         self.weather = try parametersContainer.decode(String.self, forKey: .weather)
-        self.adress = try parametersContainer.decode(String.self, forKey: .address)
+//        self.adress = try parametersContainer.decode(String.self, forKey: .address)
     }
 }
 

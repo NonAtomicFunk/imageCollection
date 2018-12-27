@@ -19,11 +19,16 @@ class UploadNewPicVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("hello")
+        
+        self.uISetup()
         self.locationSetup()
         self.imagePickerSetup()
         self.setupNav()
         self.bindAll()
+    }
+    
+    func uISetup() {
+        self.photoBtn.imageView!.contentMode = .scaleAspectFit
     }
     
     func locationSetup() {

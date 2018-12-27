@@ -12,4 +12,7 @@ import RxSwift
 
 final class GifGeneratorVM: BaseVM {
     
+    func getGif() {
+        Rest.shared.getGif()
+    }
 }

@@ -24,6 +24,10 @@ class PicturesLisVC: BaseVC {
         (self.viewModel as! PicturesLisVM).getAll()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        (self.viewModel as! PicturesLisVM).getAll()
+    }
+    
     func setupNav() {
         let addBtn = UIBarButtonItem(image: UIImage(named: "add-icon"),
                                      style: .plain,
@@ -49,9 +53,9 @@ class PicturesLisVC: BaseVC {
         (self.viewModel as! PicturesLisVM).dataModelsArray.asObservable()
             .bind(to: self.colelctionView.rx.items(cellIdentifier: "IcCell", cellType: IcCell.self)) { row, model, cell in
                 
-                cell.adressLbl.text = model.adress
+//                cell.adressLbl.text = model.adress
                 cell.weatherLbl.text = model.weather
-                let url = URL(string: model.smallImage)!
+                let url = URL(string: model.smallImagePath)!
                 cell.imageView.af_setImage(withURL: url)
                 
             }.disposed(by: (self.viewModel as! PicturesLisVM).bag)
@@ -72,6 +76,6 @@ extension PicturesLisVC: UICollectionViewDelegate, UICollectionViewDelegateFlowL
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = view.frame.size.width*0.22
-        return CGSize(width: width, height: width)
+        return CGSize(width: width, height: width*1.5)
     }
 }

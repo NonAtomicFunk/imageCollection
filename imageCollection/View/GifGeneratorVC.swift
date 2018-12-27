@@ -12,5 +12,6 @@ class GifGeneratorVC: BaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        (self.viewModel as! GifGeneratorVM).getGif()
     }
 }
